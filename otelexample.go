@@ -39,10 +39,10 @@ func main() {
 		log.Fatalf("unable to create OpenTelemetry stdout tracer: %v", err)
 	}
 
-	reqMetricCtx, span := tracer.Start(context.Background(), "loop-request")
+	_, span := tracer.Start(context.Background(), "loop-request")
 	span.SetStatus(codes.Ok, "")
 	span.SetAttributes(attribute.Int("did-thing", 10))
-	counter.Add(reqMetricCtx, 1)
+	counter.Add(context.Background(), 1)
 	span.End()
 
 	ctx := context.Background()
