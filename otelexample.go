@@ -76,8 +76,9 @@ func main() {
 		// and use that to send metrics. This collides with some behaviors
 		// people like where they get to set one overriding timeout for all of
 		// the operations in handling requests and then use it everywhere.
+		ctx := context.Background()
 		reqMetricCtx := context.Background()
-		reqMetricCtx, span := tracer.Start(reqMetricCtx, "loop-request")
+		_, span := tracer.Start(ctx, "loop-request")
 		span.SetStatus(codes.Ok, "")
 		span.SetAttributes(attribute.Int("did-thing", 20))
 		counter.Add(reqMetricCtx, 1)
