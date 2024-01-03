@@ -15,6 +15,7 @@ import (
 // context for recording error states. This was fixed in versions of
 // OpenTelemetry later than v1.21.0. See
 // https://github.com/open-telemetry/opentelemetry-go/commit/8e756513a630cc0e80c8b65528f27161a87a3cc8
+// When you fix this, also fix the code and comment in main.go.
 func TestOtelDroppingContextData(t *testing.T) {
 	reader := sdkmetric.NewManualReader()
 	provider := sdkmetric.NewMeterProvider(sdkmetric.WithReader(reader))
